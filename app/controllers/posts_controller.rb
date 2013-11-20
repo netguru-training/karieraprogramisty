@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   expose(:post)
+  expose(:posts)
 
   def index
-    render json: 'test'
+    respond_with posts
   end
 
   def show
