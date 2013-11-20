@@ -30,6 +30,7 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     builder (3.1.4)
+    decent_exposure (2.3.0)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     factory_girl (4.2.0)
@@ -104,6 +105,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  decent_exposure
   factory_girl_rails
   pg
   rails (= 4.0.0)
