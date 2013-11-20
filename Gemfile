@@ -7,6 +7,7 @@ gem 'rails-api'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'rspec-rails'
