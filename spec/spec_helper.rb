@@ -41,6 +41,12 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include FactoryGirl::Syntax::Methods
+  config.include RSpec::DefaultHeaders, type: :request
+
+  config.before(:each, type: :request) do
+    @user = create(:user)
+    @default_headers = { authorization: ActionController::HttpAuthentication::Token.encode_credentials(@user.api_token) }
+  end
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
