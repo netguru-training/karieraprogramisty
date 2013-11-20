@@ -6,7 +6,6 @@ describe 'authentication' do
     expect(response.status).to  eq(401)
   end
   it 'with valid token' do
-    @user = create(:user)
     get '/posts'
     expect(response.status).to eq(200)
   end
