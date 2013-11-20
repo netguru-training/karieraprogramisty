@@ -27,5 +27,7 @@ module Karieraprogramisty
 
     # Disable the asset pipeline.
     config.assets.enabled = false
+
+    config.secret_key_base = 'sdajdhgasydgfhfu38yhahsdahsdifgasgdfgysa'
   end
 end
