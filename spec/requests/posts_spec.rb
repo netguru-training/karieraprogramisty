@@ -1,11 +1,18 @@
 require 'spec_helper'
 
 describe 'posts' do
-  it 'GET /posts/:id' do
-    post = create(:post)
-    get "/posts/#{post.id}"
-    expect(response).to be_success
-    expect(response.body).to eq(PostSerializer.new(post).to_json)
+  describe 'GET /posts/:id' do
+    it 'existing' do
+      post = create(:post)
+      get "/posts/#{post.id}"
+      expect(response).to be_success
+      expect(response.body).to eq(PostSerializer.new(post).to_json)
+    end
+    it 'not existing' do
+      get 'posts/666'
+      expect(response.status).to eq(404)
+      expect(response.body).to eq("{\"errors\":\"Couldn't find Post with id=666\"}")
+    end
   end
   it 'GET /posts' do
     post = create(:post)

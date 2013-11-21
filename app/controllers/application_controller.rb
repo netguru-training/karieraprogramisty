@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
     render json: { errors: exception.record.errors }, status: 422
   end
 
+  rescue_from 'ActiveRecord::RecordNotFound' do |exception|
+    render json: { errors: exception.message }, status: 404
+  end
+
   before_filter :restrict_access
 
   respond_to :json
