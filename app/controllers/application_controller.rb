@@ -3,6 +3,10 @@ class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   include ActionController::ImplicitRender 
 
+  rescue_from 'ActiveRecord::RecordInvalid' do |exception|
+    render json: { errors: exception.record.errors }, status: 422
+  end
+
   before_filter :restrict_access
 
   respond_to :json

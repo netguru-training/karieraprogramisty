@@ -15,10 +15,17 @@ describe 'posts' do
     expect(json.size).to eq(10)
     expect(response.body).to include(PostSerializer.new(post).to_json)
   end
-  it 'POST /posts' do
-    post '/posts', post: {content: 'foo bar'}
-    expect(response.status).to eq(201)
-    expect(response.body).to include('"content":"foo bar"')
-    expect(response.body).to include('"user_id":' + @user.id.to_s)
+  describe 'POST /posts' do
+    it 'valid' do
+      post '/posts', post: {content: 'foo bar'}
+      expect(response.status).to eq(201)
+      expect(response.body).to include('"content":"foo bar"')
+      expect(response.body).to include('"user_id":' + @user.id.to_s)
+    end
+    it 'invalid' do
+      post '/posts', post: {}
+      expect(response.status).to eq(422)
+      expect(json['errors']).to_not be_nil
+    end
   end
 end
